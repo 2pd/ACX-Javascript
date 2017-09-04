@@ -1,6 +1,7 @@
 var request = require('request');
 var querystring = require('querystring');
 var crypto = require('crypto');
+var _ = require('underscore');
 
 var Acx = function(key, secret, timeout){
   this.key = key;
@@ -19,18 +20,63 @@ Acx.prototype._request = function(method, path, data, callback) {
 };
 
 
-Acx.prototype._get = function (pair, method, callback) {
+Acx.prototype._get = function (method, callback, args) {
+
   var _path = method;
+  _path += (querystring.stringify(args) === '' ? '/' : '/?') + querystring.stringify(args);
   this._request('get', _path, undefined, callback);
 };
 
 Acx.prototype.ticker = function (pair, callback) {
   if (!pair) {
-   this._get(undefined, 'tickers.json', callback);
+   this._get('tickers.json', callback);
   }else{
-   this._get(undefined, 'tickers/' + pair + '.json', callback);
+   this._get('tickers/' + pair + '.json', callback);
   }
 };
+
+Acx.prototype.timestamp = function (callback) {
+  this._get('timestamp.json', callback);
+};
+
+
+Acx.prototype.orderbook = function (pair, callback, args) {
+
+  args = _.extend({
+    market: pair
+  }, args);
+
+  this._get('order_book.json', callback, args);
+};
+
+Acx.prototype.depth = function (pair, callback, args) {
+
+  args = _.extend({
+    market: pair
+  }, args);
+
+  this._get('depth.json', callback, args);
+};
+
+Acx.prototype.trades = function (pair, callback, args) {
+
+  args = _.extend({
+    market: pair
+  }, args);
+
+  this._get('trades.json', callback, args);
+};
+
+
+Acx.prototype.k = function (pair, callback, args) {
+
+  args = _.extend({
+    market: pair
+  }, args);
+
+  this._get('k.json', callback, args);
+};
+
 
 Acx.prototype.markets = function (callback) {
   this._get(undefined, 'markets.json', callback);

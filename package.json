@@ -13,8 +13,7 @@
   "author": "Liang Shi <jeremy@pda.sh>",
   "license": "MIT",
   "dependencies": {
-    "crypto": "^1.0.1",
-    "querystring": "^0.2.0",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "underscore": "^1.8.3"
   }
 }
