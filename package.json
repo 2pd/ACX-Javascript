@@ -1,0 +1,20 @@
+{
+  "name": "acx",
+  "version": "1.0.0",
+  "description": "Acx exchange API Nodejs wrapper",
+  "main": "acx.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ACX",
+    "API"
+  ],
+  "author": "Liang Shi <jeremy@pda.sh>",
+  "license": "MIT",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "querystring": "^0.2.0",
+    "request": "^2.81.0"
+  }
+}
